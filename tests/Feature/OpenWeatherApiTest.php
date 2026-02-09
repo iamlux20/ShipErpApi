@@ -6,7 +6,6 @@ use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
-use Carbon\Carbon;
 use Tests\TestCase;
 
 class OpenWeatherApiTest extends TestCase
@@ -83,7 +82,7 @@ class OpenWeatherApiTest extends TestCase
         ]);
 
         Cache::shouldReceive('has')->once()->andReturn(false);
-        Cache::shouldReceive('remember')->once()->andReturnUsing(function ($key, $duration, $callback) {
+        Cache::shouldReceive('remember')->once()->andReturnUsing(function ($callback) {
             return $callback();
         });
 
